@@ -1,3 +1,10 @@
-import {name} from './create'
+import 'alpinejs'
+import create from './create'
 
-console.log(name)
+declare global {
+    interface Window {
+        create: any
+    }
+}
+
+window.create = create

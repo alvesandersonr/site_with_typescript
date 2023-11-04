@@ -14,4 +14,4 @@ app.use(cors({
 app.use('/', home);
 app.use('/user', user);
 
-app.listen(3000, () => console.log('servidor rodando'))
+app.listen(3000, () => console.log('server\'s on'))
