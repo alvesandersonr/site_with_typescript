@@ -4,12 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="./assets/css/styles.css">
 
     <title>Curso de back e front com typescript</title>
 </head>
 <body>
-    <h1>Curso de Typescript</h1>
-    <script src="dist/index.js"></script>
+    <h2 id="title">Curso de back e front</h1>
+
+    <button id="create">Create</button>
+        <!--<script src="dist/index.js"></script>-->
+
+    <script>
+        const buttonCreate = document.querySelector('#create')
+
+        buttonCreate.addEventListener('click', async function () {
+            try {
+                const response = await fetch('http://localhost:3000/user/create', {
+                    method: 'post'
+                })
+
+                console.log(await response.json())
+            } catch (error) {
+                console.log(error)
+            }
+        })
+    </script>
 </body>
 </html>
