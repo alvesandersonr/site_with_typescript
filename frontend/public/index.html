@@ -12,7 +12,29 @@
     <h2 id="title">Curso de back e front</h1>
 
     <div x-data="create()">
-        <button x-on:click="create" id="create">Create</button>
+        <form x-on:submit.prevent = "createUser">
+            <label for="firstName">First Name</label>
+            <input type="text" name="firstName" x-model="user.firstName">
+            <span id="error-firstName"></span>
+            <br />
+
+            <label for="lastName">Last Name</label>
+            <input type="text" name="lastName" x-model="user.lastName">
+            <span id="error-lastName"></span>
+            <br />
+
+            <label for="email">Email</label>
+            <input type="text" name="email" x-model="user.email">
+            <span id="error-email"></span>
+            <br />
+
+            <label for="password">Password</label>
+            <input type="text" name="password" x-model="user.password">
+            <span id="error-password"></span>
+            <br />
+            
+            <button type="submit">Create</button>
+        </form>
     </div>
     
     <script src="dist/index.js"></script>

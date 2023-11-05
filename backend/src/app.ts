@@ -11,7 +11,10 @@ app.use(cors({
     origin: ['http://localhost:5000']
 }))
 
+app.use(express.json());
+
 app.use('/', home);
 app.use('/user', user);
 
-app.listen(3000, () => console.log('server\'s on'))
+const PORT = 3000;
+app.listen(PORT, () => console.log(`server's on port: ${PORT}`))
