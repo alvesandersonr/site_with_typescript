@@ -1,6 +1,7 @@
 import http from "./helpers/http"
+import { userCreateInterface } from "../interfaces/userCreateInterface"
 
-function create() {
+function create(): userCreateInterface {
     return {
         user: {
             firstName: 'Anderson',
@@ -25,8 +26,6 @@ function create() {
                         }, 3000)
                     })
                 }
-                
-                console.log(error.response.data)
             }
         },
     }
