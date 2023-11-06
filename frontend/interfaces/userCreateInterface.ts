@@ -1,4 +1,5 @@
 export interface userCreateInterface {
+    created: boolean,
     user: {
         firstName: string,
         lastName: string,

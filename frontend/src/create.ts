@@ -1,20 +1,27 @@
 import http from "./helpers/http"
 import { userCreateInterface } from "../interfaces/userCreateInterface"
 import { errorValidateInterface } from "../interfaces/errorValidateInterface"
+import { USER_CREATED } from "./helpers/constants"
 
 function create(): userCreateInterface {
     return {
+        created: false,
         user: {
-            firstName: 'Anderson',
-            lastName: 'Alves',
+            firstName: 'Admin',
+            lastName: 'Full',
             email: 'admin@admin.com',
-            password: 'admin123',
+            password: '123123',
         },
 
         createUser: async function() {
             try {
-                const {data} = await http.post('/user/create', this.user)
-                console.log(data)
+                const {data} = await http.post('/user/store', this.user)
+                if (data === USER_CREATED) {
+                    this.created = true
+                    setTimeout(() => {
+                        this.created = false
+                    }, 3000)
+                }
             } catch(error: any) {
                 const errors = error.response?.data?.errors
                 if (errors) {

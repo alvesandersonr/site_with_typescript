@@ -12,6 +12,9 @@
     <h2 id="title">Curso de back e front</h1>
 
     <div x-data="create()">
+
+        <div x-show="created">Usuário cadastrado com sucesso.</div>
+
         <form x-on:submit.prevent = "createUser">
             <label for="firstName">First Name</label>
             <input type="text" name="firstName" x-model="user.firstName">
