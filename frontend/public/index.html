@@ -14,6 +14,7 @@
     <div x-data="create()">
 
         <div x-show="created">Usuário cadastrado com sucesso.</div>
+        <div x-show="errors.email_duplicated">E-mail já está sendo utilizado.</div>
 
         <form x-on:submit.prevent = "createUser">
             <label for="firstName">First Name</label>

@@ -22,8 +22,10 @@ const store = async (request: Request, response: Response) => {
 
         response.json('USER_CREATED').status(200)
 
-    } catch (error) {
-        console.log(error)
+    } catch (error: any) {
+        if (error?.code === 'ER_DUP_ENTRY') {
+            response.status(400).json('EMAIL_DUPLICATED')
+        }
     }
 }
 

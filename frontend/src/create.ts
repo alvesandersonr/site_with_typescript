@@ -6,6 +6,9 @@ import { USER_CREATED } from "./helpers/constants"
 function create(): userCreateInterface {
     return {
         created: false,
+        errors: {
+            email_duplicated: false,
+        },
         user: {
             firstName: 'Admin',
             lastName: 'Full',
@@ -33,6 +36,24 @@ function create(): userCreateInterface {
                             elementValidation.innerHTML = ''
                         }, 3000)
                     })
+                } else {
+                    switch(error.response?.data) {
+                        case 'EMAIL_DUPLICATED':
+                            this.errors.email_duplicated = true
+                            const elementValidation = document.querySelector(`#error-email`) as HTMLSpanElement
+                            elementValidation.innerHTML = 'Email already exists'
+
+                            setTimeout(() => {
+                                elementValidation.innerHTML = ''
+                            }, 3000)
+                            break
+                        default:
+                            break
+                    }
+
+                    setTimeout(() => {
+                        this.errors.email_duplicated = false
+                    }, 3000)
                 }
             }
         },
