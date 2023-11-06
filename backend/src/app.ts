@@ -1,6 +1,8 @@
 import express from 'express'
 import cors from 'cors'
 
+import '../database/src'
+
 //routes
 import home from '../routes/home'
 import user from '../routes/user'

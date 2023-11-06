@@ -5,15 +5,21 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev src/app.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/es6-shim": "^0.31.44",
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "express-validator": "^7.0.1"
+    "express-validator": "^7.0.1",
+    "mysql": "^2.18.1",
+    "reflect-metadata": "^0.1.13",
+    "sql.js": "^1.8.0",
+    "typeorm": "^0.2.45"
   },
   "devDependencies": {
     "@types/cors": "^2.8.15",
