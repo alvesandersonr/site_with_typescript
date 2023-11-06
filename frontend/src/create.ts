@@ -1,7 +1,8 @@
 import http from "./helpers/http"
 import { userCreateInterface } from "../interfaces/userCreateInterface"
 import { errorValidateInterface } from "../interfaces/errorValidateInterface"
-import { USER_CREATED } from "./helpers/constants"
+import { EMAIL_DUPLICATED, USER_CREATED } from "./helpers/constants"
+import Swal from "sweetalert2"
 
 function create(): userCreateInterface {
     return {
@@ -20,10 +21,15 @@ function create(): userCreateInterface {
             try {
                 const {data} = await http.post('/user/store', this.user)
                 if (data === USER_CREATED) {
-                    this.created = true
-                    setTimeout(() => {
-                        this.created = false
-                    }, 3000)
+                    Swal.fire({
+                        title: "Sucesso!",
+                        text: "Usuário cadastrado com sucesso!",
+                        icon: "success"
+                    });
+                    // this.created = true
+                    // setTimeout(() => {
+                    //     this.created = false
+                    // }, 3000)
                 }
             } catch(error: any) {
                 const errors = error.response?.data?.errors
@@ -38,14 +44,19 @@ function create(): userCreateInterface {
                     })
                 } else {
                     switch(error.response?.data) {
-                        case 'EMAIL_DUPLICATED':
-                            this.errors.email_duplicated = true
-                            const elementValidation = document.querySelector(`#error-email`) as HTMLSpanElement
-                            elementValidation.innerHTML = 'Email already exists'
+                        case EMAIL_DUPLICATED:
+                            Swal.fire({
+                                title: "Atenção!",
+                                text: "Este e-mail já está sendo utilizado!",
+                                icon: "warning"
+                            });
+                            // this.errors.email_duplicated = true
+                            // const elementValidation = document.querySelector(`#error-email`) as HTMLSpanElement
+                            // elementValidation.innerHTML = 'Email already exists'
 
-                            setTimeout(() => {
-                                elementValidation.innerHTML = ''
-                            }, 3000)
+                            // setTimeout(() => {
+                            //     elementValidation.innerHTML = ''
+                            // }, 3000)
                             break
                         default:
                             break
